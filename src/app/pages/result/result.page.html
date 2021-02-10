@@ -30,8 +30,13 @@
 
       <br>
       <br>
-      <ion-button *ngIf="ready$ | async" expand="block" (click)="onDownload()">
-        Télécharger
+      <ion-button *ngIf="ready$ | async" expand="block" (click)="share()">
+        Partager !
+      </ion-button>
+      <br>
+
+      <ion-button *ngIf="ready$ | async" expand="block" (click)="goHome()" fill="clear" color="danger">
+        Retour à l'accueil
       </ion-button>
     </div>
 

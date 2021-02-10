@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+
+import { Platform } from '@ionic/angular';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -9,6 +12,9 @@ export class AppComponent {
     { title: 'Accueil', url: '/accueil', icon: 'home' },
     { title: 'À propos', url: '/a-propos', icon: 'help-circle' },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+
+  constructor(
+    private readonly platform: Platform,
+  ) {
+  }
 }

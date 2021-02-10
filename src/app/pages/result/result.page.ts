@@ -1,8 +1,10 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {StateService} from '../../services/state.service';
-import {BehaviorSubject, combineLatest, Subject} from 'rxjs';
-import {filter, takeUntil, tap} from 'rxjs/operators';
-import {NavController} from '@ionic/angular';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { File } from '@ionic-native/file/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { NavController } from '@ionic/angular';
+import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
+import { filter, takeUntil, tap } from 'rxjs/operators';
+import { StateService } from '../../services/state.service';
 
 @Component({
   selector: 'app-result',
@@ -15,7 +17,11 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
   destroyed$ = new Subject<boolean>();
   ctx: CanvasRenderingContext2D;
 
-  constructor(private stateService: StateService, private navCtrl: NavController) {
+  constructor(
+    private stateService: StateService,
+    private navCtrl: NavController,
+    private socialSharing: SocialSharing,
+  ) {
   }
 
   ngOnDestroy() {
@@ -46,8 +52,7 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
     ).subscribe();
   }
 
-
-  private drawOnCanvas(file: File, {h1, h2}: { h1: string; h2: string }) {
+  private drawOnCanvas(file: File | any, { h1, h2 }: { h1: string; h2: string }) {
     if (!file) {
       return;
     }
@@ -59,7 +64,6 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
       canvas.width = Math.max(canvas.offsetWidth, 600);
       canvas.height = Math.max(canvas.offsetHeight, 600);
       this.ctx.drawImage(img, 0, 0, canvas.width, (canvas.width * ratio));
-
 
       this.ctx.fillStyle = 'white';
       this.ctx.textAlign = 'start';
@@ -79,20 +83,17 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
       pading = (w - metric) / 2;
       this.ctx.fillText(text, pading, 182);
 
-
       text = 'le républigram'.toUpperCase();
       this.ctx.font = 14 + 'px "LexendMegaRegular"';
       metric = this.ctx.measureText(text).width;
       pading = (w - metric);
       this.ctx.fillText(text, pading - 5, canvas.height - 5);
 
-
       /*const waterMarkImg = new Image();
-      waterMarkImg.onload = () => {
-        this.ctx.drawImage(waterMarkImg, 0, canvas.width - 30, 100, canvas.width);
-      };
-      waterMarkImg.src = 'assets/images/watermark.png';*/
-
+       waterMarkImg.onload = () => {
+       this.ctx.drawImage(waterMarkImg, 0, canvas.width - 30, 100, canvas.width);
+       };
+       waterMarkImg.src = 'assets/images/watermark.png';*/
 
       setTimeout(() => this.ready$.next(true), 1000);
     };
@@ -106,5 +107,29 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
     document.body.appendChild(a);
     a.click();
     requestAnimationFrame(() => document.body.removeChild(a));
+  }
+
+  share() {
+    console.log('share clicked');
+    const img = this.canvasContainer.nativeElement.toDataURL('image/jpeg', 1.0);
+    const name = 'LE-REPUBLIGRAM_image_' + Math.random().toString().slice(3, 8) + '.png';
+
+    this.socialSharing.share('Message and image', name, img, 'http://www.x-services.nl')
+      .then(() => console.log('shared ok'))
+      .catch((err) => console.error(err));
+
+    /*
+     const fileTransfer: FileTransferObject = this.transfer.create();
+     fileTransfer.download(url, this.fileService.externalRootDirectory + name).then((entry) => {
+     console.log('download complete: ' + entry.toURL());
+     }, (err) => {
+     // handle error
+     console.error(err);
+     });
+     */
+  }
+
+  goHome() {
+    this.navCtrl.navigateBack(['accueil']);
   }
 }

@@ -1,13 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { IonicModule } from '@ionic/angular';
+import { FootTextModule } from '../../components/foot-text/foot-text.module';
 
 import { ResultPageRoutingModule } from './result-routing.module';
-
 import { ResultPage } from './result.page';
-import {FootTextModule} from '../../components/foot-text/foot-text.module';
 
 @NgModule({
   imports: [
@@ -17,6 +16,12 @@ import {FootTextModule} from '../../components/foot-text/foot-text.module';
     ResultPageRoutingModule,
     FootTextModule,
   ],
-  declarations: [ResultPage]
+  declarations: [
+    ResultPage,
+  ],
+  providers: [
+    SocialSharing,
+  ],
 })
-export class ResultPageModule {}
+export class ResultPageModule {
+}

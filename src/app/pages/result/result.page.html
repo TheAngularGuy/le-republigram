@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button text="" defaultHref="text"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <span class="lexa">
+        Partager
+      </span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <div class="main">
+      <br>
+      <br>
+      <ng-container *ngIf="!(ready$ | async)">
+        <p class="loading">
+          <!-- Dots -->
+          <ion-spinner name="dots"></ion-spinner>
+        </p>
+      </ng-container>
+
+      <div class="transition" [ngStyle]="{ opacity: (ready$ | async) ? '1' : '0' }">
+        <canvas #canvasContainer height="400" width="400">
+        </canvas>
+      </div>
+
+      <br>
+      <br>
+      <ion-button *ngIf="ready$ | async" expand="block" (click)="onDownload()">
+        Télécharger
+      </ion-button>
+    </div>
+
+    <app-foot-text></app-foot-text>
+  </div>
+</ion-content>

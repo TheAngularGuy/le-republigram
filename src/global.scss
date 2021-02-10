@@ -24,3 +24,67 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "./font";
+
+.aiglon {
+  font-family: "Aiglon Regular", sans-serif;
+  text-transform: uppercase;
+}
+
+.lexa {
+  font-family: "LexendMegaRegular", "Aiglon Regular", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -1.5px;
+}
+
+.elyse {
+  font-family: "Elyse", "Comic Sans MS", sans-serif;
+  text-transform: capitalize;
+}
+
+.beauties {
+  font-family: "LaBeauties", "Elyse", "Comic Sans MS", sans-serif;
+  text-transform: capitalize;
+}
+
+
+// Ajustement theme
+.header-ios ion-toolbar ion-title {
+  font-weight: normal !important;
+}
+
+.header-ios ion-toolbar:last-of-type {
+  --border-width: 0 !important;
+}
+
+.header-md::after {
+  opacity: 0;
+}
+
+
+// style
+.container {
+  height: 98%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  .main {
+    width: 100%;
+  }
+
+  .footer-text {
+    font-family: sans-serif;
+    font-style: italic;
+    font-size: .8rem;
+    opacity: .6;
+    padding: .5rem;
+    text-align: center;
+
+    .lexa {
+      font-style: normal;
+    }
+  }
+}

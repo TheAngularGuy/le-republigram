@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button #toggleMenuBtn style="display: none"></ion-menu-button>
+      <ion-button (click)="toggleMenu(toggleMenuBtn)">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <span class="lexa">
+        le Républigram
+      </span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="container">
+    <p></p>
+
+    <button class="add" (click)="onSelectImg()">
+      <ion-icon name="cloud-upload-outline"></ion-icon>
+      <span>Choisir la photo</span>
+    </button>
+
+    <app-foot-text></app-foot-text>
+  </div>
+
+  <p class="beauties" style="opacity: 0; max-height: 0">...</p>
+  <input #fileInput type="file" style="display: none" accept="image/*" (change)="onFileLoaded()"/>
+</ion-content>

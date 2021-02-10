@@ -1,5 +1,7 @@
 {
   "name": "republigram",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

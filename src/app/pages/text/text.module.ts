@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 
 import { TextPageRoutingModule } from './text-routing.module';
 
@@ -17,6 +17,6 @@ import {FootTextModule} from '../../components/foot-text/foot-text.module';
     TextPageRoutingModule,
     FootTextModule,
   ],
-  declarations: [TextPage]
+  declarations: [TextPage],
 })
 export class TextPageModule {}

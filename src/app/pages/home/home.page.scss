@@ -10,8 +10,8 @@
     all: unset;
     width: calc(100vw - 16%);
     height: calc(100vw - 16%);
-    max-height: 665px;
-    max-width: 665px;
+    max-height: 465px;
+    max-width: 465px;
     background: #fff;
     display: flex;
     align-items: center;
@@ -24,6 +24,8 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 
     span {
+      text-align: center;
+      margin: 0;
       opacity: .6;
     }
 

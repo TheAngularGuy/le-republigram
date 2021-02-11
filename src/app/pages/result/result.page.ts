@@ -75,7 +75,7 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
       this.ctx.font = 44 + 'px "LexendMegaRegular"';
       let metric = this.ctx.measureText(text).width;
       let pading = (w - metric) / 2;
-      this.ctx.fillText(text, pading, 85);
+      this.ctx.fillText(text, pading, 82);
 
       text = (h2[0].toUpperCase() + h2.slice(1).toLowerCase()).trim(); // 20 max
       this.ctx.font = 68 * 2 + 'px "LaBeauties"';
@@ -84,10 +84,10 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
       this.ctx.fillText(text, pading, 182);
 
       text = 'le républigram'.toUpperCase();
-      this.ctx.font = 14 + 'px "LexendMegaRegular"';
+      this.ctx.font = 16 + 'px "LexendMegaRegular"';
       metric = this.ctx.measureText(text).width;
       pading = (w - metric);
-      this.ctx.fillText(text, pading - 5, canvas.height - 5);
+      this.ctx.fillText(text, pading - 8, canvas.height - 8);
 
       /*const waterMarkImg = new Image();
        waterMarkImg.onload = () => {
@@ -100,6 +100,7 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onDownload() {
+    console.log('onDownload');
     const a = document.createElement('a');
     a.style.display = 'none';
     a.href = this.canvasContainer.nativeElement.toDataURL();
@@ -109,24 +110,20 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
     requestAnimationFrame(() => document.body.removeChild(a));
   }
 
-  share() {
+  onShare() {
     console.log('share clicked');
+
+    if (this.stateService.isDesktop$.getValue()) {
+      this.onDownload();
+    }
+
     const img = this.canvasContainer.nativeElement.toDataURL('image/jpeg', 1.0);
     const name = 'LE-REPUBLIGRAM_image_' + Math.random().toString().slice(3, 8) + '.png';
+    const msg = `Hey ! Regarde le républigram que je viens de créer ! LE RÉPUBLIGRAM iOS app`;
 
-    this.socialSharing.share('Message and image', name, img, 'http://www.x-services.nl')
+    this.socialSharing.share(msg, name, img, null)
       .then(() => console.log('shared ok'))
       .catch((err) => console.error(err));
-
-    /*
-     const fileTransfer: FileTransferObject = this.transfer.create();
-     fileTransfer.download(url, this.fileService.externalRootDirectory + name).then((entry) => {
-     console.log('download complete: ' + entry.toURL());
-     }, (err) => {
-     // handle error
-     console.error(err);
-     });
-     */
   }
 
   goHome() {

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "le-republigram": {
+      "hosting": {
+        "app": [
+          "le-republigram"
+        ]
+      }
+    }
+  }
+}

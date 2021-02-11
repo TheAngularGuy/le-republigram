@@ -23,19 +23,26 @@
         </p>
       </ng-container>
 
-      <div class="transition" [ngStyle]="{ opacity: (ready$ | async) ? '1' : '0' }">
+      <div class="transition"
+           [ngStyle]="{ opacity: (ready$ | async) ? '1' : '0' }">
         <canvas #canvasContainer height="400" width="400">
         </canvas>
       </div>
 
       <br>
       <br>
-      <ion-button *ngIf="ready$ | async" expand="block" (click)="share()">
+      <ion-button *ngIf="ready$ | async"
+                  expand="block"
+                  (click)="onShare()">
         Partager !
       </ion-button>
       <br>
 
-      <ion-button *ngIf="ready$ | async" expand="block" (click)="goHome()" fill="clear" color="danger">
+      <ion-button *ngIf="ready$ | async" expand="block"
+                  (click)="goHome()"
+                  fill="clear"
+                  color="danger"
+                  style="transform-origin: top center;transform: scale(.7);">
         Retour à l'accueil
       </ion-button>
     </div>

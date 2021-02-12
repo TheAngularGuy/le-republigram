@@ -129,7 +129,7 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
   goHome() {
     this.navCtrl.navigateBack(['accueil']);
 
-    // Autorisation nécessaire pour prendre une photo
-    // Autorisation nécessaire pour accéder à votre librairie de photos
+    // Pour prendre une photo l'application a besoin de votre autorisation afin d'utiliser votre caméra. Les photos prises seront utilisées dans vos photomontages.
+    // Pour choisir une photo ou une image depuis votre appareil, l'application a besoin d'accéder à votre librairie de photos.
   }
 }

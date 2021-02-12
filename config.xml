@@ -47,7 +47,7 @@
     </platform>
     <platform name="ios">
         <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
-            <string>You can take photos</string>
+            <string>Pour prendre une photo l'application a besoin de votre autorisation afin d'utiliser votre caméra. Les photos prises seront utilisées dans vos photomontages.</string>
         </config-file>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />

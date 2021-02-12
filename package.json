@@ -81,8 +81,8 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-x-socialsharing": {
-        "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access to function properly.",
-        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to function properly."
+        "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "Pour choisir une photo ou une image depuis votre appareil, l'application a besoin d'accéder à votre librairie de photos.",
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "Pour choisir une photo ou une image depuis votre appareil, l'application a besoin d'accéder à votre librairie de photos."
       }
     },
     "platforms": [

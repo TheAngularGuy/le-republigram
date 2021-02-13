@@ -87,9 +87,25 @@ ion-button {
     opacity: .6;
     padding: .5rem;
     text-align: center;
+    color: black;
 
     .lexa {
       font-style: normal;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  /*
+   * Dark Colors
+   * -------------------------------------------
+   */
+
+  body {
+    .container {
+      .footer-text {
+        color: white;
+      }
     }
   }
 }

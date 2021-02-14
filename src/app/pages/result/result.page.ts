@@ -125,17 +125,25 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
 
     const img = this.canvasContainer.nativeElement.toDataURL('image/jpeg', 1.0);
     const name = 'LE-REPUBLIGRAM_image_' + Math.random().toString().slice(3, 8) + '.png';
-    const msg = `Hey ! Regarde le républigram que je viens de créer ! LE RÉPUBLIGRAM iOS app`;
+    const msg = `Hey ! Regarde le républigram que je viens de créer ! #reubligramIOSapp `;
 
     this.socialSharing.share(msg, name, img, null)
       .then(() => {
         console.log('shared ok');
 
-        this.inAppReview.requestReview()
-          .then((res: any) => console.log(res))
-          .catch((error: any) => console.error(error));
+        setTimeout(() => this.askInAppReview(), 1000);
       })
       .catch((err) => console.error(err));
+  }
+
+  askInAppReview() {
+    const lastTimeAsked = JSON.parse(localStorage.getItem('lastTimeAskedToReview'));
+    if (!lastTimeAsked || lastTimeAsked < (Date.now() - 3600 * 24 * 5 * 100)) {
+      this.inAppReview.requestReview()
+        .then((res: any) => console.log(res))
+        .catch((error: any) => console.error(error));
+      localStorage.setItem('lastTimeAskedToReview', JSON.stringify(Date.now()));
+    }
   }
 
   goHome() {

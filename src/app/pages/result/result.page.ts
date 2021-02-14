@@ -124,10 +124,10 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
     }
 
     const img = this.canvasContainer.nativeElement.toDataURL('image/jpeg', 1.0);
-    const name = 'LE-REPUBLIGRAM_image_' + Math.random().toString().slice(3, 8) + '.png';
-    const msg = `Hey ! Regarde le républigram que je viens de créer ! #reubligramIOSapp `;
+    const name = 'LE-REPUBLIGRAM_image_' + Math.random().toString().slice(3, 9) + '.png';
+    const msg = `Hey ! Regarde le républigram que je viens de créer ! #reubligramIOSapp`;
 
-    this.socialSharing.share(msg, name, img, null)
+    this.socialSharing.share(msg, name, img, 'https://apps.apple.com/fr/app/le-r%C3%A9publigram/id1553171745')
       .then(() => {
         console.log('shared ok');
 

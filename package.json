@@ -49,6 +49,7 @@
     "@types/jasminewd2": "2.0.3",
     "@types/node": "12.11.1",
     "codelyzer": "6.0.0",
+    "com.omarben.inappreview": "0.0.6",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "cordova-plugin-ionic-webview": "4.2.1",
@@ -56,6 +57,10 @@
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-x-socialsharing": "6.0.3",
     "es6-promise-plugin": "4.2.2",
+    "firebase-tools": "9.3.0",
+    "fuzzy": "0.1.3",
+    "inquirer": "6.2.2",
+    "inquirer-autocomplete-prompt": "1.0.1",
     "jasmine-core": "3.6.0",
     "jasmine-spec-reporter": "5.0.0",
     "karma": "5.1.0",
@@ -64,15 +69,11 @@
     "karma-coverage-istanbul-reporter": "3.0.2",
     "karma-jasmine": "4.0.0",
     "karma-jasmine-html-reporter": "1.5.0",
+    "open": "7.0.3",
     "protractor": "7.0.0",
     "ts-node": "8.3.0",
     "tslint": "6.1.0",
-    "typescript": "4.0.2",
-    "firebase-tools": "9.3.0",
-    "fuzzy": "0.1.3",
-    "inquirer": "6.2.2",
-    "inquirer-autocomplete-prompt": "1.0.1",
-    "open": "7.0.3"
+    "typescript": "4.0.2"
   },
   "description": "An Ionic project",
   "cordova": {
@@ -86,7 +87,8 @@
       "cordova-plugin-x-socialsharing": {
         "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "Pour choisir une photo ou une image depuis votre appareil, l'application a besoin d'accéder à votre librairie de photos.",
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": "Pour choisir une photo ou une image depuis votre appareil, l'application a besoin d'accéder à votre librairie de photos."
-      }
+      },
+      "com.omarben.inappreview": {}
     },
     "platforms": [
       "ios",

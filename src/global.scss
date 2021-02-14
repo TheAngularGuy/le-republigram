@@ -87,7 +87,10 @@ ion-button {
     opacity: .6;
     padding: .5rem;
     text-align: center;
-    color: black;
+
+    a {
+      color: black;
+    }
 
     .lexa {
       font-style: normal;
@@ -104,7 +107,9 @@ ion-button {
   body {
     .container {
       .footer-text {
-        color: white;
+        a {
+          color: white;
+        }
       }
     }
   }

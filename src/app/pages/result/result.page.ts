@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { File } from '@ionic-native/file/ngx';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { NavController } from '@ionic/angular';
-import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
-import { filter, takeUntil, tap } from 'rxjs/operators';
-import { StateService } from '../../services/state.service';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {File} from '@ionic-native/file/ngx';
+import {SocialSharing} from '@ionic-native/social-sharing/ngx';
+import {NavController} from '@ionic/angular';
+import {BehaviorSubject, combineLatest, Subject} from 'rxjs';
+import {filter, takeUntil, tap} from 'rxjs/operators';
+import {StateService} from '../../services/state.service';
+import {InAppReview} from '@ionic-native/in-app-review/ngx';
 
 @Component({
   selector: 'app-result',
@@ -21,6 +22,7 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
     private stateService: StateService,
     private navCtrl: NavController,
     private socialSharing: SocialSharing,
+    private inAppReview: InAppReview
   ) {
   }
 
@@ -52,7 +54,7 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
     ).subscribe();
   }
 
-  private drawOnCanvas(file: File | any, { h1, h2, black }: { h1: string; h2: string; black: boolean }) {
+  private drawOnCanvas(file: File | any, {h1, h2, black}: { h1: string; h2: string; black: boolean }) {
     if (!file) {
       return;
     }
@@ -64,7 +66,11 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
       const ratio = Math.max(img.width / img.height, img.height / img.width);
       canvas.width = 1000;
       canvas.height = 1000;
-      this.ctx.drawImage(img, 0, 0, canvas.width, (canvas.width * ratio));
+      if (img.height >= img.width) {
+        this.ctx.drawImage(img, 0, 0, canvas.width, (canvas.width * ratio));
+      } else {
+        this.ctx.drawImage(img, 0, 0, canvas.height * ratio, canvas.height);
+      }
 
       this.ctx.fillStyle = black ? 'black' : 'white';
       this.ctx.textAlign = 'start';
@@ -112,9 +118,9 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
 
   onShare() {
     console.log('share clicked');
-
     if (this.stateService.isDesktop$.getValue()) {
       this.onDownload();
+      return;
     }
 
     const img = this.canvasContainer.nativeElement.toDataURL('image/jpeg', 1.0);
@@ -122,7 +128,13 @@ export class ResultPage implements OnInit, AfterViewInit, OnDestroy {
     const msg = `Hey ! Regarde le républigram que je viens de créer ! LE RÉPUBLIGRAM iOS app`;
 
     this.socialSharing.share(msg, name, img, null)
-      .then(() => console.log('shared ok'))
+      .then(() => {
+        console.log('shared ok');
+
+        this.inAppReview.requestReview()
+          .then((res: any) => console.log(res))
+          .catch((error: any) => console.error(error));
+      })
       .catch((err) => console.error(err));
   }
 
